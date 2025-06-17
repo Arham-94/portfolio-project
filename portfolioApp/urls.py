@@ -24,5 +24,4 @@ urlpatterns = [
     path('delete-project/<int:id>/', views.delete_proj, name='delete_proj'),
     path('update-project/<int:id>/', views.update_proj, name='update_proj'),
 ] 
-if settings.DEBUG==False:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

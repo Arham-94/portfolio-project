@@ -29,5 +29,4 @@ urlpatterns = [
     path('my-portfolio-django-admin/', admin.site.urls),
     path('', include('portfolioApp.urls')),
 ]
-if settings.DEBUG == False:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
