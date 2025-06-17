@@ -29,6 +29,7 @@ SECRET_KEY = 'django-insecure-pfw)0$1-&jc6y+un52g8%%gb@@gs&7_fip+ve8uqskd5p1+8k*
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://arhamkhan-developer.up.railway.app", "http://127.0.0.1"]
 
 
 # Application definition
@@ -76,7 +77,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolioProject.wsgi.application'
 
-DB_LIVE =os.getenv('DB_LIVE')
+DB_LIVE =os.environ('DB_LIVE')
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -96,11 +97,11 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv('DB_NAME'),
-            "USER": os.getenv('DB_USER'),
-            "PASSWORD": os.getenv('DB_PASSWORD'),
-            "HOST": os.getenv('DB_HOST'),
-            "PORT": os.getenv('DB_PORT'),
+            "NAME": os.environ('DB_NAME'),
+            "USER": os.environ('DB_USER'),
+            "PASSWORD": os.environ('DB_PASSWORD'),
+            "HOST": os.environ('DB_HOST'),
+            "PORT": os.environ('DB_PORT'),
         }
     }
 
