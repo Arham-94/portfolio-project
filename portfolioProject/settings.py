@@ -176,4 +176,8 @@ LOGIN_URL = '/login/'  # URL to your login page if user tries to access protecte
 STATIC_URL = '/static/'
 
 
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
