@@ -182,7 +182,7 @@ span{
   transition : 0.5s !important;
 }
 .hero-image-container:hover{
-  transform  : scale(1.01) !important;
+  transform  : scale(1.05) !important;
 }
 .hero-image-bg{
     height: 20rem;
@@ -210,8 +210,7 @@ span{
     aspect-ratio: 1 / 1;
     z-index: 10;
     filter: drop-shadow(4px 4px 4px var(--color-3));
-    animation: up-down 1s infinite linear,
-                zoom-in 1s ease forwards;
+    animation: zoom-in 1s ease forwards;
 }
 
 @media (max-width: 767px) {
