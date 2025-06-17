@@ -80,7 +80,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolioProject.wsgi.application'
 
-DB_LIVE =os.environ('DB_LIVE')
+DB_LIVE =os.environ.get('DB_LIVE')
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
