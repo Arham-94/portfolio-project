@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+  :root{
+          --color-1 : {{colors.color1}} !important;
+          --color-2 : {{colors.color2}} !important;
+          --color-3 : {{colors.color3}}!important;
+          --color-4 : #0EF60E !important;
+          --color-5 : {{colors.color4}} !important;
+      }
+  body {
+    background-color: #ECF3FC;
+  }
+
+  .heading{
+    color : var(--color-3);
+    font-weight : 700;
+  }
+
+  .message-card {
+    background-color: white;
+    border-left: 5px solid var(--color-3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  }
+
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-2);
+    font-weight: 500;
+  }
+
+  .message-body {
+    padding: 1rem;
+  }
+
+  .respond-btn {
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .message-box {
+    max-height: 150px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    color: #333;
+    font-size: 15px;
+  }
+
+  .card-label {
+    font-weight: 600;
+    color: #555;
+  }
+
+  .small-text {
+    font-size: 13px;
+    color: #777;
+  }
+</style>
+
+{% include "navbar.html" %}
+
+<div class="container py-5" style='margin-top : 65px;'>
+  <h2 class="mb-4 text-center heading">User Messages</h2>
+
+  <form method="GET" class="mb-4">
+  <div class="row g-2 align-items-center">
+
+    <!-- Keyword Search -->
+    <div class="col-md-4">
+      <input type="text" name="q" class="form-control" placeholder="Search by name, email, or message..." value="{{ request.GET.q }}">
+    </div>
+
+    <!-- Responded Status Filter -->
+    <div class="col-md-3">
+      <select name="status" class="form-select">
+        <option value="">All Statuses</option>
+        <option value="responded" {% if request.GET.status == "responded" %}selected{% endif %}>Responded</option>
+        <option value="not_responded" {% if request.GET.status == "not_responded" %}selected{% endif %}>Not Responded</option>
+      </select>
+    </div>
+
+    <!-- Date From -->
+    <div class="col-md-2">
+      <input type="date" name="start_date" class="form-control" value="{{ request.GET.start_date }}">
+    </div>
+
+    <!-- Date To -->
+    <div class="col-md-2">
+      <input type="date" name="end_date" class="form-control" value="{{ request.GET.end_date }}">
+    </div>
+
+    <!-- Submit Button -->
+    <div class="col-md-1">
+      <button type="submit" class="btn w-100" style='background : var(--color-3);'>Filter</button>
+    </div>
+
+  </div>
+</form>
+{% if contactMessages %}
+      {% for message in contactMessages %}
+  <div class="message-card">
+    <div class="message-header">
+      <div>
+        <span class="card-label">#{{ message.id }} — {{ message.name }}</span><br>
+        <span class="small-text">{{ message.email }}</span>
+      </div>
+      <div class="text-end">
+        <span class="small-text">{{ message.created_at}}</span><br>
+        <a href="{% url 'mark_responded' message.id %}" 
+          class="btn {% if message.responded %}btn-success{% else %}btn-danger respond-btn{% endif %}">
+          {% if message.responded %}
+            Responded
+          {% else %}
+            Respond
+          {% endif %}
+        </a>
+
+      </div>
+    </div>
+    <div class="message-body">
+      <div class="message-box">
+        {{ message.message }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+{% else %}
+  <div class="alert alert-warning text-center mt-4">
+    No messages found matching your criteria.
+  </div>
+{% endif %}
+
+{% with request.GET.urlencode as query_params %}
+  {% if query_params %}
+    {% with '&'|add:query_params|cut:'page=' as query_string %}
+      <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+          {% if contactMessages.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ contactMessages.previous_page_number }}{{ query_string }}">Previous</a>
+            </li>
+          {% endif %}
+
+          {% for num in contactMessages.paginator.page_range %}
+            <li class="page-item {% if contactMessages.number == num %}active{% endif %}">
+              <a class="page-link" href="?page={{ num }}{{ query_string }}">{{ num }}</a>
+            </li>
+          {% endfor %}
+
+          {% if contactMessages.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ contactMessages.next_page_number }}{{ query_string }}">Next</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endwith %}
+  {% else %}
+    <nav class="mt-4">
+      <ul class="pagination justify-content-center">
+        {% if contactMessages.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ contactMessages.previous_page_number }}">Previous</a>
+          </li>
+        {% endif %}
+
+        {% for num in contactMessages.paginator.page_range %}
+          <li class="page-item {% if contactMessages.number == num %}active{% endif %}">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+          </li>
+        {% endfor %}
+
+        {% if contactMessages.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ contactMessages.next_page_number }}">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endif %}
+{% endwith %}
+
+
+
+
+
+{% endblock content %}
+
+
+

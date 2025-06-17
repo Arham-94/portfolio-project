@@ -1,0 +1,30 @@
+{% load static %}
+
+<section id="hero" style='margin-top : 65px;'>
+      <div class="hero-section-container">
+        <div class="container">
+            <div class="hero-main-container">
+                <div class="hero-content">
+                    <h6 class="slide-top">Hi, Everyone!</h6>
+                    <h1 class="slide-right">I am <span class='typing'></span>|</h1>
+                    <p class="slide-bottom">{{profile.intro}}</p>
+                    <div class="hero-btn-container">
+                        <a href="#portfolio" style="--i:1" class="hero-btn hero-btn-neon">
+                            View Work
+                        </a>
+                        <a href="#contact" style="--i:2" class="hero-btn hero-btn-hollow">
+                            Contact
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-container">
+                    <div class="hero-image-bg"></div>
+                    <img src="{{profile.profile_image.url}}" alt="" class="hero-image">
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+
+

@@ -1,0 +1,21 @@
+
+<section id="services">
+    <h1 class="text-center mb-5  slide-top">Services <span>Offer</span></h1>
+    <div class="container">
+    <div class="services-grid slide-bottom">
+        {% for service in services %}
+        <div class="service-card">
+        <div class="service-icon">{{service.icon}}</div>
+        <h3 class="service-title">{{service.name}}</h3>
+        <p class="service-description">
+            {{service.description}}
+        </p>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+  <div class="hero-image-bg second-rotate-bg"></div>
+
+</section>
+
+  

@@ -1,0 +1,16 @@
+{% load static %}
+{% for project in projects %}
+    <div class="portfolio-card">
+    <div class="portfolio-image">
+    <img src="{{project.image.url}}" alt="Project Title">
+    </div>
+    <div class="portfolio-content">
+    <h3 class="portfolio-title">{{project.title}}</h3>
+    <p class="portfolio-description">
+    {{ project.description|truncatechars_html:80|safe }}
+    </p>
+
+    <a href="{% url "project_detail" project.id %}" class="portfolio-link">View Project</a>
+    </div>
+</div>
+{% endfor %}

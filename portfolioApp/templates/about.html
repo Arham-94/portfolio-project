@@ -1,0 +1,38 @@
+{% load static %}
+<section id="about">
+      <div class="container">
+        <div class="about-container">
+            <h1 class="text-center slide-right"><span>About</span> Me</h1>
+            <div class="row mt-5">
+                <div class="col-12 col-md-6 mb-3 about-paragraph-container">
+                    <p class="about-paragraph slide-left">
+                        {{about.about_intro|safe}}
+                    </p>
+                    {% if profile.pdf %}
+                    <a href="{{profile.pdf.url}}" class="about-btn hero-btn hero-btn-neon">Download CV</a>
+                    {% endif %}
+                    
+                </div>
+                <div class="col-12 col-md-6">
+                        <ul class="about-see-list">
+                            <li style="--i:8" class="about-see-btn skill-button-about slide-bottom active-link">Skills</li>
+                            <li style="--i:9" class="about-see-btn education-button-about slide-bottom">Education</li>
+                            <li style="--i:10" class="about-see-btn experience-button-about slide-bottom">Experience</li>
+                        </ul>
+                        <div class="show-see-container">
+                            <div class="skill-container zoom-in">
+                            {% for skill in skills %}
+                                <div class="skill mb-3">
+                                    <span class="skill-label">{{skill.name}}</span>
+                                    <div class="skill-bar">
+                                    <div class="skill-fill" style="width: {{skill.percentage}}%;"></div>
+                                </div>
+                            </div>
+                                {% endfor %}
+                        
+                        </div>
+                </div>
+            </div>
+      </div>
+      </div>
+    </section>

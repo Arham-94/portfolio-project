@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section id="pf-portfolio-details" class="container py-5">
+
+
+  <div class="row align-items-start gy-4">
+    <!-- Image Section -->
+    <div class="col-lg-6">
+      <div class="pf-img-wrapper rounded overflow-hidden">
+        <img src="{{project.image.url}}" alt="Portfolio image" class="img-fluid w-100 pf-img mt-1">
+        {% if project.image2 %}<img src="{{project.image2.url}}" alt="Portfolio image" class="img-fluid w-100 pf-img mt-3">{% endif %}
+        {% if project.image3 %}<img src="{{project.image3.url}}" alt="Portfolio image" class="img-fluid w-100 pf-img mt-3">{% endif %}
+        {% if project.image4 %}<img src="{{project.image4.url}}" alt="Portfolio image" class="img-fluid w-100 pf-img mt-3">{% endif %}
+        
+      </div>
+    </div>
+
+    <!-- Description Section -->
+    <div class="col-lg-6">
+      <div class="pf-text-content">
+        <h3 class="fw-bold text-center mt-3 mt-md-0 mt-lg-0">{{project.title}}</h3>
+        <p class="mt-3">
+          {{project.description|safe}}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

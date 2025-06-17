@@ -1,0 +1,18 @@
+<section id="portfolio">
+        <div class="hero-image-bg"></div>
+        <h1 class="text-center mb-5  slide-top">Projects <span>Done</span></h1>
+
+    <!-- Project Grid (container for items) -->
+    <div class='container'>
+      <div id="project-container" class="portfolio-grid slide-bottom" data-total-projects="{{ projects_total }}">
+      {% include 'partials/project_card.html' with projects=projects %}
+      </div>
+    </div>
+
+    <!-- Load More Button -->
+    <div style="text-align:center; margin-top:50px;">
+      <button id="loadMoreBtn" class='hero-btn hero-btn-neon'>Load More</button>
+    </div>
+  </div>
+</section>
+

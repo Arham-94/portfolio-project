@@ -1,0 +1,44 @@
+{% load static %}
+<section id='contact'>
+  <div class="container">
+        <section class="contact-section">
+            <h1 class="text-center mb-5 slide-top"><span>Contact</span> Me</h1>
+  <div class="contact-container">
+    <!-- Form Side -->
+    <div class="contact-form slide-right">
+      <h2 class="contact-title">Get in Touch</h2>
+      <form method='POST' action='/'>
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" placeholder="Your Name" name='name' required>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Your Email" name='email' required>
+        </div>
+        <div class="form-group">
+          <textarea rows="5" placeholder="Your Message" name='message' required></textarea>
+        </div>
+        <button type="submit" class="hero-btn hero-btn-neon">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Info Side -->
+    <div class="contact-info slide-left">
+      <h2 class="contact-title">Contact Info</h2>
+      {% if profile.email %}<p>📧 <strong>Email : </strong>{{profile.email}}</p>{% endif %}
+      {% if profile.phone %}<p>📞 <strong>Phone : </strong>{{profile.phone}}</p>{% endif %}
+      <p>💬 Feel free to reach out for collaboration, freelance, or just to say hi!</p>
+      {% if socialMediaIcons %}
+      <div class="social-media-icons">
+        <ul class="social-media-list">
+          {% for icon in socialMediaIcons  %}
+          <a href="{{icon.link}}" target="_blank" rel="noopener noreferrer" class="social-media-icon">{{icon.icon|safe}}</a>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+    </div>
+</section>

@@ -1,0 +1,41 @@
+{% load static %}
+<section id="navbar">
+      <nav class="navbar navbar-expand-lg container">
+        <div class="container-fluid">
+          <a class="navbar-brand slide-right" href="/">Arham khan.</a>
+          <button
+          class="navbar-toggler border-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars slide-left navbar-toggler-icon"></i>
+        </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav displayNone ms-auto mb-lg-0 ">
+              {% if is_admin %}
+                <!-- Admin Navbar Links -->
+                <li class="nav-item"><a class="nav-link" style="--i:3" href="{% url "mainAdmin" %}">Messages</a></li>
+                <li class="nav-item"><a class="nav-link"  style="--i:4" href="{% url "settings" %}">Settings</a></li>
+                <li class="nav-item"><a class="nav-link"  style="--i:5" href="{% url "change_password" %}">Change Password</a></li>
+                <li class="nav-item"><a class="nav-link"  style="--i:6" href="{% url "logout" %}">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link"  style="--i:3" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link"  style="--i:4" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link"  style="--i:6" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link"  style="--i:5" href="#portfolio">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link"  style="--i:7" href="#contact">Contact</a></li>
+              {% endif %}
+              
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section> 
+
+             
+        
