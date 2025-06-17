@@ -175,6 +175,8 @@ LOGIN_URL = '/login/'  # URL to your login page if user tries to access protecte
 STATIC_URL = '/static/'
 
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_ROOT = 'staticfiles'
 
