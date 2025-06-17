@@ -30,8 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = [
-    "arhamkhan-developer.up.railway.app",
-    "127.0.0.1"
+    "http://127.0.0.1",
+    "https://arhamkhan-developer.up.railway.app"
 ]
 
 
@@ -174,6 +174,6 @@ LOGIN_REDIRECT_URL = '/my-portfolio-admin/'
 LOGIN_URL = '/login/'  # URL to your login page if user tries to access protected page
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
