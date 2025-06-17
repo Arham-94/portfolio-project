@@ -23,4 +23,6 @@ urlpatterns = [
     path('delete-social-media-info/<int:id>/', views.delete_social_media, name='delete_social_media'),
     path('delete-project/<int:id>/', views.delete_proj, name='delete_proj'),
     path('update-project/<int:id>/', views.update_proj, name='update_proj'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
